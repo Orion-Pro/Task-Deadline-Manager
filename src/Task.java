@@ -1,13 +1,12 @@
 public class Task implements Comparable<Task>{
 
-    private final int id;
+    private int id;
     private final String title;
     private final String description;
     private boolean completed; //not final, because it is changed when completed.
     private final TaskDateInfo dateInfo;
 
     public Task(int ID, String TITLE, String DES, boolean COMP, TaskDateInfo DI) {
-        this.id = ID;
         this.title = TITLE;
         this.description = DES;
         this.completed = COMP;
@@ -21,6 +20,8 @@ public class Task implements Comparable<Task>{
     public int getId() {
         return id;
     }
+
+    public void setID(int ID) {this.id = ID;}
 
     public String getTitle() {
         return title;
@@ -43,7 +44,7 @@ public class Task implements Comparable<Task>{
     }
 
     public void displayTaskRow() {
-        System.out.printf("%-5s, %-12s, %-18s, %-12s, %-10s%n", getId(), getTitle(), getDescription(), getDateInfo().getDueDate(), isCompleted() ? "Complete" : "Incomplete");
+        System.out.printf("%-5s %-12s %-18s %-12s %-10s %n", getId(), getTitle(), getDescription(), getDateInfo().getDueDate(), isCompleted() ? "Complete" : "Incomplete");
     }
 
 }
