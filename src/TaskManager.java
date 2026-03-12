@@ -4,14 +4,10 @@ import java.util.Collections; //Very useful for array lists
 
 public class TaskManager {
 
-    private ArrayList<Task> tasks = new ArrayList<>();
-    private int head = 0;
+//    private ArrayList<Task> tasks = new ArrayList<>();
+//    private int head = 0;
 
-    public void addTask(Task task) {
-        tasks.add(task);
-        task.setID(head);
-        head++;
-    }
+    TaskTable taskTable = new TaskTable();
 
     public void displayTasks() {
         if (tasks.isEmpty()) {
@@ -26,13 +22,6 @@ public class TaskManager {
 
     }
 
-    private void viewOverdueTasks() {
-        for (Task t : tasks) {
-            if (t.getDateInfo().isOverdue())
-                System.out.println(t + " - ");
-        }
-    }
-
     public void removeCompletedTasks() {}
 
     public void saveToFile() {}
@@ -41,7 +30,7 @@ public class TaskManager {
 
     public void sortTasks() {
         Collections.sort(tasks);
-    }
+    } //Might not need to sort, get back to it later.
 
     public Task searchByID(int ID) {
         Collections.sort(tasks);

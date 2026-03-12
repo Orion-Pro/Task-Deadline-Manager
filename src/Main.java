@@ -48,7 +48,7 @@ void main() {
                 TaskDateInfo dateInfo = new TaskDateInfo(LocalDateTime.now(), LocalDate.of(intDueDateArray[0], intDueDateArray[1], intDueDateArray[2]));
 
                 Task newTask = new Task(taskID, taskTitle, taskDes, false, dateInfo);
-                taskManager.addTask(newTask);
+                taskManager.taskTable.addDueTask(newTask);
                 break;
             }
             case 2: {
@@ -77,6 +77,7 @@ void main() {
                 break;
             }
             case 7: {
+                taskManager.taskTable.viewOverdueTasks();
                 break;
             }
             case 0: {
@@ -97,6 +98,21 @@ void main() {
 //- Show overdue tasks
 //- Print all tasks in a formatted table using printf()
 
+
+
+
 //I'm at something of an impasse, either I make multiple data structures to hold the same data in different orders.
 //I could sort a lot! Essentially every time I look up a value.
 //Or have most of the searching algorithms be O(n), which is not the worse admittedly, but not ideal.
+
+//Important note, O(n) algorithms are unavoidable. Print all tasks has to be O(n)
+//ID serves to differentiate tasks with the same title (mostly)
+//We search by ID only for req3
+//We more often than not search by date (overdue or not)
+
+//Ideas:
+    //Move overdue tasks to a separate data structure whenever they become overdue.
+    //Good news is tasks become overdue at the exact same time each time. (This project makes the simplifying assumption that any task is due at 11:59 on the due date)
+    //This means we can run a O(n) algorithm everyday at 00:00 to parse the data-structure for overdue tasks and transfer them to overdue data-structure.
+    //This will allow for quicker lookups.
+    //In Due and Overdue datastructures, search by ID needs to be O(1)
