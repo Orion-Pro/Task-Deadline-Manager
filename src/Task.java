@@ -1,4 +1,4 @@
-public class Task {
+public class Task implements Comparable<Task>{
 
     private final int id;
     private final String title;
@@ -14,11 +14,8 @@ public class Task {
         this.dateInfo = DI;
     }
 
-    public int compareTo(Task task1, Task task2) {
-        if (task1.getDateInfo().dueDate.isBefore(task2.getDateInfo().dueDate))
-            return 0;
-        else
-            return 1;
+    public int compareTo(Task other) {
+        return this.getDateInfo().getDueDate().compareTo(other.getDateInfo().getDueDate());
     }
 
     public int getId() {
@@ -45,6 +42,8 @@ public class Task {
         this.completed = true;
     }
 
-    public void displayTaskRow() {}
+    public void displayTaskRow() {
+        System.out.printf("%-5s, %-12s, %-18s, %-12s, %-10s%n", getId(), getTitle(), getDescription(), getDateInfo().getDueDate(), isCompleted() ? "Complete" : "Incomplete");
+    }
 
 }
