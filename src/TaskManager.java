@@ -13,12 +13,29 @@ public class TaskManager {
             System.out.print(t + " - ");
     }
 
+    private void viewOverdueTasks() {
+        for (Task t : tasks) {
+            if (t.getDateInfo().isOverdue())
+                System.out.println(t + " - ");
+        }
+    }
+
     public void removeCompletedTasks() {}
 
     public void saveToFile() {}
 
     public void loadFromFile() {}
 
-    public Task searchByID() {}
+    public void mergeSort() {
+        tasks.sort();
+    }
+
+    public Task searchByID(int ID) {
+        for (Task t : tasks) {
+            if (t.getId() == ID)
+                return t;
+        }
+        return null;
+    }
 
 }

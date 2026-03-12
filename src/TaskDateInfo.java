@@ -6,7 +6,10 @@ public class TaskDateInfo {
     LocalDate dueDate;
     LocalDateTime createdAt;
 
-    public TaskDateInfo() {}
+    public TaskDateInfo(LocalDateTime creationTime, LocalDate dueDate) {
+        this.createdAt = creationTime;
+        this.dueDate = dueDate;
+    }
 
     public LocalDate getDueDate() {
         return this.dueDate;

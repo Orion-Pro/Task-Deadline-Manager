@@ -1,10 +1,10 @@
 public class Task {
 
-    private int id;
-    private String title;
-    private String description;
-    private boolean completed;
-    TaskDateInfo dateInfo;
+    private final int id;
+    private final String title;
+    private final String description;
+    private boolean completed; //not final, because it is changed when completed.
+    private final TaskDateInfo dateInfo;
 
     public Task(int ID, String TITLE, String DES, boolean COMP, TaskDateInfo DI) {
         this.id = ID;
@@ -12,6 +12,13 @@ public class Task {
         this.description = DES;
         this.completed = COMP;
         this.dateInfo = DI;
+    }
+
+    public int compareTo(Task task1, Task task2) {
+        if (task1.getDateInfo().dueDate.isBefore(task2.getDateInfo().dueDate))
+            return 0;
+        else
+            return 1;
     }
 
     public int getId() {
