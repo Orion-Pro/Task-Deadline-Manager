@@ -111,8 +111,3 @@ void main() {
 //We more often than not search by date (overdue or not)
 
 //Ideas:
-    //Move overdue tasks to a separate data structure whenever they become overdue.
-    //Good news is tasks become overdue at the exact same time each time. (This project makes the simplifying assumption that any task is due at 11:59 on the due date)
-    //This means we can run a O(n) algorithm everyday at 00:00 to parse the data-structure for overdue tasks and transfer them to overdue data-structure.
-    //This will allow for quicker lookups.
-    //In Due and Overdue datastructures, search by ID needs to be O(1)
