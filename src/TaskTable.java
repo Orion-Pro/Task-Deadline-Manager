@@ -1,30 +1,26 @@
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TaskTable {
 
-    private ArrayList<Task> dueTasks = new ArrayList<>();
-
-    //What about an array of size 31, use a const array of month lengths to handle invalid date inputs
-    //Place a linked list with all tasks with that bucket's due date
-    //Remove tasks marked as complete and write to file (for records)
-
-    private final int[] monthLengths = {
-        /*Jan*/ 31, /*Feb*/ 28, /*Mar*/ 31, /*Apr*/ 30, /*May*/ 31, /*Jun*/ 30, /*Jul*/ 31, /*Aug*/ 31, /*Sep*/ 30, /*Oct*/ 31, /*Nov*/ 30, /*Dec*/ 31}
-        //Improvement: handle leap years.
-
-
+    public ArrayList<Task> tasks = new ArrayList<>();
+    public HashMap<Integer, Task> tasksByID = new HashMap<>();
+    public HashMap<LocalDate, LinkedList<Task>> tasksByDueDate = new HashMap<>();
 
 
     public void addTask(Task task) {
-        dueTasks.add(task);
-    }
+        tasks.add(task);
+        tasksByID.put(task.getId(), task);
 
-    public void viewOverdueTasks() {
-        for (Task t : dueTasks) {
-            if (t.getDateInfo().isOverdue())
-                System.out.println(t + " - ");
-        }
-    }
+        if (tasksByDueDate.get(task.getDateInfo().getDueDate()) == null)
+            tasksByDueDate.put(task.getDateInfo().getDueDate(), new LinkedList<>());
 
+        tasksByDueDate.get(task.getDateInfo().getDueDate()).add(task); //Adds to the linked list;
+    }
+//
+//    public void viewOverdueTasks() {
+//        LocalDate today = LocalDate.now();;
+//        while (tasksByDueDate.get()) {}
+//    }
 }

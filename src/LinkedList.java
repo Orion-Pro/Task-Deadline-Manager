@@ -1,4 +1,4 @@
-public class LinkedList implements List<Task> {
+public class LinkedList<Task> implements List<Task> {
 
     private class Node<Task> {
         private Task nodeTask;
@@ -47,8 +47,8 @@ public class LinkedList implements List<Task> {
             return;
         }
         else {
-            Node nodeToRemove = new Node();
-            while () //While ID != task.getID() node = node.next;
+            Node nodeToRemove = head;
+            //while () //While ID != task.getID() node = node.next;
         }
     }
 

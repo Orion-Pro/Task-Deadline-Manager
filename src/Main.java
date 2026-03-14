@@ -28,7 +28,6 @@ void main() {
                 System.out.print("Enter task details: ");
                 System.out.print("\nTask ID: ");
                 int taskID = intScanner.nextInt();
-                //scanner.reset();
 
                 System.out.print("Task Title: ");
                 String taskTitle = stringScanner.nextLine();
@@ -47,8 +46,9 @@ void main() {
 
                 TaskDateInfo dateInfo = new TaskDateInfo(LocalDateTime.now(), LocalDate.of(intDueDateArray[0], intDueDateArray[1], intDueDateArray[2]));
 
-                Task newTask = new Task(taskID, taskTitle, taskDes, false, dateInfo);
-                taskManager.taskTable.addDueTask(newTask);
+                Task newTask = new Task(taskTitle, taskDes, false, dateInfo);
+                newTask.setID(taskID);
+                taskManager.taskTable.addTask(newTask);
                 break;
             }
             case 2: {
@@ -57,11 +57,21 @@ void main() {
             }
             case 3: {
                 System.out.print("Enter a task ID to search for: ");
-                int searchID = intScanner.nextInt();
-                Task complete = taskManager.searchByID(searchID);
-                if (complete == null)
-                    break; //Error message already printed in TaskManager
-                complete.markCompleted();
+                try {
+                    int searchID = intScanner.nextInt();
+                    Task complete = taskManager.searchByID(searchID);
+                    if (complete.isCompleted()) {
+                        System.out.println("Task is already complete.");
+                        break;
+                    }
+                    if (complete == null)
+                        throw new Exception(); //Error message already printed in TaskManager
+                    complete.markCompleted();
+                    System.out.println("Task successfully marked as completed.");
+                }
+                catch (Exception e) {
+                    System.out.println(TaskManager.Error_Message);
+                }
                 break;
             }
             case 4: {
@@ -77,7 +87,7 @@ void main() {
                 break;
             }
             case 7: {
-                taskManager.taskTable.viewOverdueTasks();
+                //taskManager.taskTable.viewOverdueTasks();
                 break;
             }
             case 0: {
@@ -101,13 +111,7 @@ void main() {
 
 
 
-//I'm at something of an impasse, either I make multiple data structures to hold the same data in different orders.
-//I could sort a lot! Essentially every time I look up a value.
-//Or have most of the searching algorithms be O(n), which is not the worse admittedly, but not ideal.
-
 //Important note, O(n) algorithms are unavoidable. Print all tasks has to be O(n)
 //ID serves to differentiate tasks with the same title (mostly)
 //We search by ID only for req3
 //We more often than not search by date (overdue or not)
-
-//Ideas:

@@ -6,7 +6,7 @@ public class Task implements Comparable<Task>{
     private boolean completed; //not final, because it is changed when completed.
     private final TaskDateInfo dateInfo;
 
-    public Task(int ID, String TITLE, String DES, boolean COMP, TaskDateInfo DI) {
+    public Task(String TITLE, String DES, boolean COMP, TaskDateInfo DI) { //ID will be set separately
         this.title = TITLE;
         this.description = DES;
         this.completed = COMP;
